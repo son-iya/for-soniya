@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Favorite Person</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:italic,wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --soft-pink: #fff5f6;
+            --text-dark: #1a1a1a;
+            --glass: rgba(255, 255, 255, 0.85);
+        }
+        
+        .glowing-name {
+            font-family: 'Crimson Pro', serif;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+            animation: love-pulse 2s infinite alternate;
+            display: inline-block;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background: var(--soft-pink);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Falling Petals Effect */
+        #canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1;
+        }
+        @keyframes love-pulse {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--love-glow), 0 0 20px var(--love-glow);
+                transform: scale(1);
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px var(--love-glow), 0 0 30px var(--love-glow), 0 0 40px var(--love-glow);
+                transform: scale(1.05);
+            }
+        }
+
+        /* Hero Letter Section */
+        .section-hero {
+            height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2; position: relative;
+        }
+
+        .letter-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 50px;
+            max-width: 550px;
+            border-radius: 30px;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.1);
+            border: 1px solid white;
+            text-align: center;
+        }
+
+        h1 { font-family: 'Crimson Pro', serif; font-size: 3rem; margin-top: 0; }
+        p { line-height: 1.8; font-size: 1.1rem; color: #333; }
+
+        /* The "Why I Love You" Grid */
+        .reason-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .reason-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .reason-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        /* Memory Section */
+        .memory-section {
+            padding: 100px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .memory-block {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s all ease;
+        }
+
+        .memory-block.active { opacity: 1; transform: translateY(0); }
+
+        .img-frame {
+            flex: 1;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .img-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        .text-frame { flex: 1; }
+        .text-frame h2 { font-family: 'Crimson Pro', serif; font-size: 2rem; color: var(--gold); }
+
+        .forgive-btn {
+            background: var(--gold);
+            color: white;
+            padding: 20px 80px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: block;
+            margin: 50px auto;
+            transition: 0.4s;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .forgive-btn:hover { transform: scale(1.05); background: #b8962e; }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="section-hero">
+        <div class="letter-card" id="card">
+            <h1>Dear Bestie <span class="glowing-name">Soniya</span>...</h1>
+            <p>
+                I was so happy to be with you that my excitement clouded my mind. I said something stupid as a "joke," but seeing it hurt you made my heart sink. 
+                <br><br>
+                <b>I value you more than any silly moment.</b> You are my best friend, and I’m so lucky to have you. Click the cards below to remember why I’m so crazy about you:
+            </p>
+
+            <div class="reason-grid">
+                <div class="reason-card">Your Kindness</div>
+                <div class="reason-card">Our Laughs</div>
+                <div class="reason-card">Your Smile</div>
+            </div>
+
+            <p style="font-size: 0.9rem; color: #888;">↓ Scroll to see our story</p>
+        </div>
+    </div>
+
+    <div class="memory-section">
+        <div class="memory-block">
+            <div class="img-frame">
+                <img src="https://media.gettyimages.com/id/1767016304/photo/a-wonderful-scene-of-love-and-happiness-between-a-couple-in-love-enjoying-their-new-apartment.jpg?s=2048x2048&w=gi&k=20&c=kF8q2wbtQXP68PFHctlM7CqO3XM5bTF8Wnfx6-ue8a8=" alt="Memory">
+            </div>
+            <div class="text-frame">
+                <h2>The Spark</h2>
+                <p>Remember when we first started talking? I never wanted that feeling to end. I still don't.</p>
+            </div>
+        </div>
+
+        <div class="memory-block" style="flex-direction: row-reverse;">
+            <div class="img-frame">
+                <img src="https://i1.pickpik.com/photos/225/996/972/couple-holding-hand-sunset-hand-preview.jpg" alt="Memory">
+            </div>
+            <div class="text-frame">
+                <h2>My Promise</h2>
+                <p>I promise to be more thoughtful with my words. Because your peace of mind is my priority.</p>
+            </div>
+        </div>
+
+        <button class="forgive-btn" onclick="celebrate()">I Forgive You ❤️</button>
+    </div>
+
+    <script>
+        // Floating Petals Script
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let petals = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Petal {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 7 + 2;
+                this.speed = Math.random() * 1 + 0.5;
+                this.angle = Math.random() * 360;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.fillStyle = "rgba(255, 183, 197, 0.6)";
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.angle) * 0.5;
+                if (this.y > canvas.height) this.y = -10;
+            }
+        }
+
+        for (let i = 0; i < 50; i++) petals.push(new Petal());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Reveal on Scroll
+        window.addEventListener('scroll', () => {
+            document.querySelectorAll('.memory-block').forEach(block => {
+                const rect = block.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) block.classList.add('active');
+            });
+        });
+
+        // Interactive Card Tilt
+        const card = document.getElementById('card');
+        window.addEventListener('mousemove', (e) => {
+            let x = (window.innerWidth / 2 - e.pageX) / 40;
+            let y = (window.innerHeight / 2 - e.pageY) / 40;
+            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+
+        function celebrate() {
+            alert("Thank you for your understanding and I'll make sure this will never happen again 💖");
+            document.body.style.background = "#ffd1dc";
+        }
+    </script>
+</body>
+</html>
